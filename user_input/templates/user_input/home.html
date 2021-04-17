@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Weather Forecasting using LSTM</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" type = 'text/css' href="{% static 'user_input/main.css' %}" />
+    </head>
+    <body>
+        <!-- Header -->
+            <header id="header">
+                <div class="inner">
+                    <a href="#" class="logo">Weather Forecasting</a>
+                </div>
+            </header>
+
+        <!-- Banner -->
+        <div class="row">
+            <div class="column">
+                <section id="banner">
+                    <div class="inner">
+                        <h1>Enter details: </h1>
+                        <form class="" action="/user_input/fetch_data" method="post" >
+                        {% csrf_token %}
+                            <label for="cities">Choose a city:</label>
+                            <select name="city" id="city" required>
+                                <option disabled selected value> -- select an option -- </option>
+                                <option value="New York City, NY">New York City, NY</option>
+                                <option value="Dallas, Texas">Dallas, Texas</option>
+                                <option value="Mumbai, India">Mumbai, India</option>
+                            </select>
+                            <label for="time_frame" padding-top=25px>Choose a time frame:</label>
+                            <select name="time_frame" id="time" required>
+                                <option disabled selected value> -- select an option -- </option>
+                                <option value=24>Next 24 Hours</option>
+                                <option value=168>7 days from now</option>
+                                <option value=720>30 days from now</option>
+                            </select>
+                                <label for="go"> </label>
+                                <button class="btn btn-outline-success" type="submit" name="go">Go</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+            <div class="column">
+                <img src="{% static 'user_input/graph.PNG' %}", alt="" >
+            </div>
+        </div>
+    </body>
+</html>
