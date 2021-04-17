@@ -1,5 +1,5 @@
 asgiref==3.3.4
-cmdstanpy==0.9.5
+cmdstanpy==0.9.68
 convertdate==2.3.2
 cycler==0.10.0
 Cython==0.29.23
