@@ -7,6 +7,7 @@ from datetime import datetime
 import pickle
 import matplotlib
 import os
+import joblib
 
 # Create your views here.
 
@@ -26,7 +27,8 @@ def fetch_data(request):
             model = pickle.load(open('models/ny_model.pkl', 'rb'))
 
         elif str('Dallas') in str(request.POST['city']):
-            model = pickle.load(open('models/tx_model_prophet.pkl', 'rb'))
+            #model = pickle.load(open('models/tx_model_prophet.pkl', 'rb'))
+            model = joblib.load('models/tx1_model.pkl')
 
         elif str('Mumbai') in str(request.POST['city']):
             model = pickle.load(open('models/mum_model.pkl', 'rb'))
