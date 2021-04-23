@@ -26,7 +26,7 @@ def fetch_data(request):
             model = pickle.load(open('models/ny_model.pkl', 'rb'))
 
         elif str('Dallas') in str(request.POST['city']):
-            model = pickle.load(open('models/tx_model.pkl', 'rb'))
+            model = pickle.load(open('models/tx_model_prophet.pkl', 'rb'))
 
         elif str('Mumbai') in str(request.POST['city']):
             model = pickle.load(open('models/mum_model.pkl', 'rb'))
@@ -46,7 +46,6 @@ def fetch_data(request):
 
         future_dates=model.make_future_dataframe(periods=periods, freq='H', include_history = False)
         prediction=model.predict(future_dates)
-
         preds = []
 
         for i in prediction.tail(n_future)['yhat'].values:
@@ -79,7 +78,7 @@ def fetch_data(request):
             plt.savefig('user_input/static/user_input/graph.PNG')
         
         elif (n_future == 720):
-            timestamps = pd.Series(pd.date_range(start = datetime.today(), periods=30, freq="D")).tolist()
+            timestamps = pd.Series(pd.date_range(start = datetime.today(), periods=30, freq="D", tz ='US/East-Indiana')).tolist()
             month_days = []
             for i in timestamps:
                 month_days.append(str(i)[5:10])
@@ -102,7 +101,7 @@ def fetch_data(request):
             plt.savefig('user_input/static/user_input/graph.PNG')
 
         else:
-            timestamps = pd.Series(pd.date_range(start = datetime.now(), periods=24, freq="H")).tolist()
+            timestamps = pd.Series(pd.date_range(start = datetime.now(), periods=24, freq="H", tz ='US/East-Indiana')).tolist()
             hours = []
             for i in timestamps:
                 hours.append(str(i)[10:16])
@@ -113,7 +112,6 @@ def fetch_data(request):
             plt.ylabel('Temperature (°F)', fontsize=12)
             plt.title('From now until tomorrow for '+request.POST["city"], fontsize=12)
             plt.grid()
-            plt.legend()
             plt.savefig('user_input/static/user_input/graph.PNG')
 
     return render(request, 'user_input/home.html')
