@@ -114,6 +114,6 @@ def fetch_data(request):
             plt.ylabel('Temperature (°F)', fontsize=12)
             plt.title('From now until tomorrow for '+request.POST["city"], fontsize=12)
             plt.grid()
-            plt.savefig('/home/ubuntu/weather_app/weather/user_input/static/user_input/graph.png')
+            plt.savefig('user_input/static/user_input/graph.PNG')
 
     return render(request, 'user_input/home.html')
