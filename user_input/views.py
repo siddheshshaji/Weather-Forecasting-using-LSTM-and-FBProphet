@@ -7,7 +7,8 @@ from datetime import datetime
 import pickle
 import matplotlib
 import os
-import joblib
+from fbprophet.serialize import model_to_json, model_from_json
+import json
 
 # Create your views here.
 
@@ -28,7 +29,9 @@ def fetch_data(request):
 
         elif str('Dallas') in str(request.POST['city']):
             #model = pickle.load(open('models/tx_model_prophet.pkl', 'rb'))
-            model = joblib.load('models/tx1_model.pkl')
+            #model = joblib.load('models/tx1_model.pkl')
+            with open('models/tx1_model.json', 'r') as fin:
+                model = model_from_json(json.load(fin))  # Load model
 
         elif str('Mumbai') in str(request.POST['city']):
             model = pickle.load(open('models/mum_model.pkl', 'rb'))
