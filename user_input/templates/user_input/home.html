@@ -44,9 +44,13 @@
                     </div>
                 </section>
             </div>
-            <div class="column">
-                <! -- <img src="{% static 'user_input/graph.PNG' %}", alt="" > -->
-            </div>
+            {% if os.path.exists("user_input/static/user_input/graph.PNG") %}
+                <div class="column">
+                    <img src="{% static 'user_input/graph.png' %}", alt="" >
+                </div>
+            {% else %}
+                <li>Sorry</li>
+            {% endif %}
         </div>
     </body>
 </html>
