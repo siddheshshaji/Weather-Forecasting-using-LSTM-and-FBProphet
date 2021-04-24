@@ -41,7 +41,7 @@ def fetch_data(request):
         model_now = list(model.history_dates)[-1]
         model_now = model_now.strftime("%Y-%m-%d %H:%M")
 
-        time_now = datetime.now().strftime("%Y-%m-%d %H:%51")
+        time_now = datetime.now().strftime("%Y-%m-%d %H:51")
 
         d1 = datetime.strptime(model_now, '%Y-%m-%d %H:%M')
         d2 = datetime.strptime(time_now, '%Y-%m-%d %H:%M')
